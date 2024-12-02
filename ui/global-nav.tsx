@@ -8,7 +8,9 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { useState } from 'react';
 
-export function GlobalNav() {
+import { PowerIcon } from '@heroicons/react/24/outline';
+
+export async function GlobalNav() {
   const [isOpen, setIsOpen] = useState(false);
   const close = () => setIsOpen(false);
 
@@ -25,7 +27,7 @@ export function GlobalNav() {
           </div>
 
           <h3 className="font-semibold tracking-wide text-gray-400 group-hover:text-gray-50">
-            App Router
+            เก็บข้อมูล TCAS
           </h3>
         </Link>
       </div>
@@ -66,6 +68,17 @@ export function GlobalNav() {
               </div>
             );
           })}
+          <div>
+            <Link
+              href={'/logout'}
+              key={'Logout'}
+              className="group block space-y-1.5 rounded-lg bg-gray-900 px-5 py-3 hover:bg-gray-800"
+            >
+              <div className="font-medium text-gray-200 group-hover:text-gray-50">
+                {'Logout'}
+              </div>
+            </Link>
+          </div>
         </nav>
       </div>
     </div>

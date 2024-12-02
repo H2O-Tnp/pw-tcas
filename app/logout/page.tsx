@@ -1,29 +1,22 @@
-import Link from 'next/link';
+import { signOut } from '#/auth';
 
-import { signIn } from '#/auth';
-import { auth } from '#/auth';
-
-export default async function LoginPage() {
-  const session = await auth();
-  console.log(session);
+export default function LogoutPage() {
   return (
     <form
       action={async () => {
         'use server';
-        await signIn('google', { redirectTo: '/home' });
+        await signOut();
       }}
       className="text-center"
     >
       <h1 className="text-center text-4xl font-bold text-gray-300">
-        เข้าสู่ระบบ
+        ยืนยันออกจากระบบ
       </h1>
-      <h1 className="mt-3 text-center text-3xl font-bold text-gray-300">
-        เพื่อบันทึกข้อมูล TCAS
-      </h1>
+      {/* <h1 className="mt-3 text-3xl font-bold text-gray-300 text-center">เพื่อบันทึกข้อมูล TCAS</h1> */}
       <div className="mt-5 text-white">
         <button
           // className="group block space-y-1.5 rounded-lg bg-blue-500 px-5 py-3 hover:bg-gray-800"
-          className="mt-4 inline-flex h-14 w-72 items-center justify-center rounded-lg bg-gray-700 text-lg font-medium text-white transition-colors hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
+          className="mt-4 inline-flex h-14 w-72 items-center justify-center rounded-lg bg-gray-700 text-lg font-medium text-white transition-colors hover:bg-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
           type="submit"
           name="action"
         >
@@ -53,7 +46,7 @@ export default async function LoginPage() {
               ></path>
             </g>
           </svg>
-          <span>Sign in with Google</span>
+          <span>Logout from Google</span>
         </button>
       </div>
     </form>
