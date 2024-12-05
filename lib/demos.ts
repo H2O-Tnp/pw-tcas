@@ -11,17 +11,20 @@ export const demos: { name: string; items: Item[] }[] = [
       {
         name: 'Nested Layouts',
         slug: 'layouts',
-        description: 'Create UI that is shared across routes',
+        // description: 'Create UI that is shared across routes',
+        description: 'Create UI',
       },
       {
         name: 'Grouped Layouts',
         slug: 'route-groups',
-        description: 'Organize routes without affecting URL paths',
+        // description: 'Organize routes without affecting URL paths',
+        description: 'Organize routes',
       },
       {
         name: 'Parallel Routes',
         slug: 'parallel-routes',
-        description: 'Render multiple pages in the same layout',
+        // description: 'Render multiple pages in the same layout',
+        description: 'Render multiple',
       },
     ],
   },

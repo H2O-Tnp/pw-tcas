@@ -5,6 +5,7 @@ import { usePathname, useSearchParams } from 'next/navigation';
 
 function Params() {
   const searchParams = useSearchParams()!;
+  console.log(searchParams);
 
   return searchParams.toString().length !== 0 ? (
     <div className="px-2 text-gray-500">
@@ -35,6 +36,11 @@ function Params() {
   ) : null;
 }
 
+const filterCallback = [
+  'callback',
+  // "/logout",
+];
+
 export function AddressBar() {
   const pathname = usePathname();
 
@@ -63,9 +69,11 @@ export function AddressBar() {
             <span className="text-gray-600">/</span>
             {pathname
               .split('/')
-              .slice(1)
+              .slice(2)
               .map((segment) => {
+                // console.log("address : " + segment);
                 return (
+                  // <>{!filterCallback.includes(segment) &&(
                   <React.Fragment key={segment}>
                     <span>
                       <span
@@ -78,14 +86,13 @@ export function AddressBar() {
 
                     <span className="text-gray-600">/</span>
                   </React.Fragment>
+                  // )}</>
                 );
               })}
           </>
         ) : null}
 
-        <Suspense>
-          <Params />
-        </Suspense>
+        <Suspense>{/* <Params /> */}</Suspense>
       </div>
     </div>
   );
