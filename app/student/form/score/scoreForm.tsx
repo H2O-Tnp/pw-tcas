@@ -87,43 +87,42 @@ export function StudentForm(StudentId: any) {
   }, []);
 
   return (
-    <div className=" w-full">
-      <h1>กรอกคะแนน</h1>
-      {
-        Object.keys(scores).map((subject, index) => (
-          <div className="flex flex-col space-y-3 ml-8">
-            <div className="flex flex-col space-y-1 0" key={index}>
-              <h1 className="pt-3 w-[calc(100%/2)]">
-                {subjectName[index]}:
-              </h1>
-              <div className="flex space-x-7">
-                <input className=" text-cyan-600 rounded-lg w-[calc(100%/2)]"
-                  value={scores[index]}
-                  // placeholder={String(scores[index])}
-                  type="number"
-                  // name={subject_id[index]}
-                  onChange={(e) => handleChange(index, Number(e.target.value))}
-                  min="0"
-                  max="100"
-                  step=".001"
-                />
-                <button
-                  className={clsx({
-                    'bg-pink-400': lastScores[index]!==scores[index],
-                    'group block space-y-1.5 rounded-lg px-5 py-3 bg-gray-700 text-gray-100 hover:bg-gray-500 hover:text-white': lastScores[index] === 0,
-                    'group block space-y-1.5 rounded-lg px-5 py-3 bg-vercel-pink text-red-50 hover:bg-pink-600 hover:text-white': lastScores[index] !== 0,
-                  })} 
-                  onClick={() => handleSubmit(index)}
-                >
-                  <div className="font-medium text-gray-200 group-hover:text-gray-50">
-                    {lastScores[index] === 0 ? "Save" : "Edit"}
-                  </div>
-                </button>
-              </div>
-            </div>
+    <div className="w-full flex flex-col items-center justify-center space-y-6">
+      <h1 className="text-2xl font-bold">กรอกคะแนน</h1>
+      {Object.keys(scores).map((subject, index) => (
+        <div
+          className="flex flex-col space-y-3 w-[62%] max-w-lg" // Adjusts the width of the form container
+          key={index}
+        >
+          <h1 className="text-lg font-medium">
+            {subjectName[index]}:
+          </h1>
+          <div className="flex items-center justify-between space-x-4">
+            <input
+              className="text-cyan-600 rounded-lg w-[70%] p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              value={scores[index]}
+              type="number"
+              onChange={(e) => handleChange(index, Number(e.target.value))}
+              min="0"
+              max="100"
+              step=".001"
+            />
+            <button
+              className={clsx(
+                'py-2 px-4 rounded-lg font-medium text-white transition-colors duration-300',
+                {
+                  'group block space-y-1.5 rounded-lg px-5 py-3 bg-pink-400': lastScores[index] !== scores[index],
+                  'group block space-y-1.5 rounded-lg px-5 py-3 bg-gray-700 hover:bg-gray-500': lastScores[index] === 0,
+                  'group block space-y-1.5 rounded-lg px-5 py-3 bg-vercel-pink hover:bg-pink-600': lastScores[index] !== 0,
+                }
+              )}
+              onClick={() => handleSubmit(index)}
+            >
+              {lastScores[index] === 0 ? "Save" : "Edit"}
+            </button>
           </div>
-        ))
-      }
-    </div >
+        </div>
+      ))}
+    </div>
   );
 }

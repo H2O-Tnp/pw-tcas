@@ -66,7 +66,8 @@ export function AddressBar() {
         </div>
         <div className="flex gap-x-1 text-sm font-medium">
           <div>
-            <span className="px-2 text-gray-400">pw-tcas.com</span>
+            {/* <span className="px-2 text-gray-400">pw-tcas.com</span> */}
+            {/* <span className="px-2 text-gray-400"></span> */}
           </div>
           {pathname ? (
             <>
