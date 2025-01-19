@@ -75,7 +75,7 @@ export function StudentForm() {
             <div className="flex items-center justify-between space-x-4">
               <input
                 className="text-cyan-600 rounded-lg h-12 w-[70%] p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                value={scores[index]}
+                value={scores[index] === 0 ? "" : scores[index]}
                 type="number"
                 onChange={(e) => handleChange(index, Number(e.target.value))}
                 min="0"
