@@ -18,7 +18,10 @@ export default function LoginPage() {
       <h1 className="mt-3 text-center text-2xl font-bold text-gray-300 lg:text-3xl">
         เพื่อบันทึกข้อมูล TCAS
       </h1>
-      <div className="mt-5 text-white">
+      <div className="mt-2 text-gray-400">
+        เฉพาะ Gmail โรงเรียนประจวบวิทยาลัยเท่านั้น
+      </div>
+      <div className="mt-3 text-white">
         <button
           className="mt-4 inline-flex h-14 w-72 items-center justify-center rounded-lg bg-gray-700 text-lg font-medium text-white transition-colors hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
           type="submit"
