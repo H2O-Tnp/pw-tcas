@@ -1,7 +1,7 @@
 import prisma from "#/lib/db";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 
-export async function POST(req: NextResponse){
+export async function POST(req: NextRequest){
   const body = await req.json();
   console.log("this is register api");
   console.log(body);
