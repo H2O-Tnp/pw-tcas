@@ -11,8 +11,6 @@ export default async function LoginPage() {
   const cleanedName = nameFromGmail.replace(/^(นาย|นาง|นางสาว|เด็กชาย|เด็กหญิง)\s*/, '');
   const firstname = cleanedName?.split(' ').slice(0, -1).join(' ');
   const lastName = cleanedName.split(' ').slice(-1).join(' ');
-  // console.log(firstname);
-  // console.log(lastName);
 
   const existingUserByEmail = await db.student.findUnique({
     where: { email: email }
@@ -22,7 +20,7 @@ export default async function LoginPage() {
     console.log("user already in db");
   }
   else {
-    console.log("create new user in db");
+    console.log("create new user");
     const user_id = email?.slice(0, 5);
     const isNumeric = (string: any) => /^[+-]?\d+(\.\d+)?$/.test(string)
     // console.log(isNumeric(user_id));

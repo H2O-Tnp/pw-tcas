@@ -7,6 +7,7 @@ export default function LoginPage() {
       action={async () => {
         'use server';
         // await signIn('google', { redirectTo: '/student/home' });
+        console.log("login page");
         await signIn('google', { redirectTo: '/auth/check' });
       }}
       className="text-center "

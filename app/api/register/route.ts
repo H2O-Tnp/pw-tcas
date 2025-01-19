@@ -11,8 +11,8 @@ export async function POST(req: NextRequest) {
         name: body.name,
         surname: body.surname,
         email: body.email,
-        class: "", // Placeholder
-        academic_year: 0, // Placeholder
+        class: "",
+        academic_year: 0,
       },
     });
 
