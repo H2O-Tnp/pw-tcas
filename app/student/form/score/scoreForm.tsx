@@ -1,31 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import clsx from 'clsx';
-import { db } from "#/lib/db";
+import { subjectName } from "#/lib/subjectName";
 
-export function StudentForm(StudentId: any) {
-  // const [scores, setScores] = useState({
-  //   TGAT1: 0,
-  //   TGAT2: 0,
-  //   TGAT3: 0,
-  //   TPAT1: 0,
-  //   TPAT2: 0,
-  //   TPAT3: 0,
-  //   TPAT4: 0,
-  //   TPAT5: 0,
-  // });
+export function StudentForm() {
   const [scores, setScores] = useState<number[]>(Array(8).fill(0));
   const [lastScores, setlastScores] = useState<number[]>(Array(8).fill(0));
-  const subjectName = [
-    "TGAT1 การสื่อสารภาษาอังกฤษ",
-    "TGAT2 การคิดอย่างมีเหตุผล",
-    "TGAT3 สมรรถนะการงาน",
-    "TPAT1 กสพท",
-    "TPAT2 ศิลปกรรมศาสตร์",
-    "TPAT3 วิทยาศาสตร์ เทคโนโลยี และ วิศวะกรรมศาสตร์",
-    "TPAT4 สถาปัตยกรรม",
-    "TPAT5 ครุสาสตร์ - ศึกษาศาสตร์"
-  ]
 
   const handleChange = (index: number, value: number): void => {
     const updatedValues = [...scores];
@@ -44,7 +24,6 @@ export function StudentForm(StudentId: any) {
         body: JSON.stringify({ index, score: scoreToFetch }),
       });
 
-      // const data = await response.json();
       console.log(response);
       if (response.ok) {
         console.log(`Successfully submitted score for index ${index}:`, scoreToFetch);
@@ -56,7 +35,6 @@ export function StudentForm(StudentId: any) {
     }
     getScore();
   };
-
 
   const getScore = async () => {
     try {

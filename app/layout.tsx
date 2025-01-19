@@ -4,17 +4,17 @@ import { noto } from '#/ui/fonts';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Next.js App Router',
+    default: 'PW TCAS',
     template: '%s | Next.js App Router',
   },
-  metadataBase: new URL('https://app-router.vercel.app'),
+  metadataBase: new URL('https://pw-tcas.vercel.app'),
   description:
-    'A playground to explore new Next.js App Router features such as nested layouts, instant loading states, streaming, and component level data fetching.',
+    '...',
   openGraph: {
-    title: 'Next.js App Router Playground',
+    title: 'เก็บข้อมูล TCAS ประจวบวิทยาลัย',
     description:
-      'A playground to explore new Next.js App Router features such as nested layouts, instant loading states, streaming, and component level data fetching.',
-    images: [`/api/og?title=Next.js App Router`],
+      '...',
+    // images: [`/public/PW-TCAS.png`],
   },
   twitter: {
     card: 'summary_large_image',
