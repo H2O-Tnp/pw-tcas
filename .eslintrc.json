@@ -1,3 +1,18 @@
+// {
+//   "extends": "next/core-web-vitals"
+// }
+
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next",
+    "next/core-web-vitals"
+  ],
+  "overrides": [
+    {
+      "files": ["app/api/**/*.ts", "app/api/**/*.tsx"],
+      "rules": {
+        "react-hooks/rules-of-hooks": "off" // Disable the rule for API routes
+      }
+    }
+  ]
 }
