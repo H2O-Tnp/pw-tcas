@@ -10,7 +10,7 @@ export default async function Page() {
           <h1 className="text-xl font-semibold text-gray-300">สถานะ</h1>
           <div className="">
             <Link
-              href={`/student/score-form`}
+              href={`/student/form/university`} // to be continue
               // key={item.name}
               className="group block space-y-1.5 rounded-lg bg-gray-900 px-5 py-3 hover:bg-gray-800 text-center"
             >
