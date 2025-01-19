@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
       });
       console.log('Score created:', result);
     }
-    return NextResponse.json({ message: 'Success', result: result }, { status: 200 });
+    return NextResponse.json({ message: 'Success',}, { status: 200 });
 
   } catch (error) {
     console.error('Error upserting score:', error);

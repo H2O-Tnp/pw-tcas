@@ -29,7 +29,8 @@ export default async function LoginPage() {
     if (isNumeric(user_id)) {
       console.log("register student");
       const submitData = async () => {
-        let response = await fetch('/api/register', {
+        // let response = await fetch('http://localhost:3000/api/register', {
+        let response = await fetch('https://pw-tcas.vercel.app/api/register', {
           method: 'POST',
           body: JSON.stringify({
             name: firstname,
@@ -43,7 +44,7 @@ export default async function LoginPage() {
           // }
         })
 
-        response = await response.json()
+        // response = await response.json()
 
         // alert(JSON.stringify(response))
       }
