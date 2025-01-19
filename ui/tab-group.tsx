@@ -9,7 +9,7 @@ export type Item = {
 
 export const TabGroup = ({
   path,
-  parallelRoutesKey,
+  parallelRoutesKey, 
   items,
 }: {
   path: string;

@@ -1,6 +1,7 @@
 import { option } from '#/lib/option';
 import Link from 'next/link';
 
+
 export default async function Page() {
   return (
     <div className="space-y-8">
@@ -9,6 +10,7 @@ export default async function Page() {
         <div className="space-y-5">
           <h1 className="text-xl font-semibold text-gray-300">สถานะ</h1>
           <div className="">
+            
             <Link
               href={`/student/form/university`} // to be continue
               // key={item.name}
