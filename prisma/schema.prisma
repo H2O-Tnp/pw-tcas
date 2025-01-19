@@ -13,7 +13,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id String @id @default(uuid())
-  
+model Student {
+  student_id    Int         @id @default(autoincrement())
+  name          String
+  surname       String
+  email         String      @unique
+  class         String?
+  academic_year Int?
+  scores        Score[]
+  univisity     Univisity[]
+}
+
+model Score {
+  score_id  Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  student_id Int
+  subject_id Int
+  score      Float
+  percentile Float?
+  student    Student @relation(fields: [student_id], references: [student_id], onDelete: Cascade)
+  subject    Subject @relation(fields: [subject_id], references: [subject_id], onDelete: Cascade)
+  // @@unique([student_id, subject_id]) // Composite unique constraint
+}
+
+model Subject {
+  subject_id   Int     @id @default(autoincrement())
+  subject_name String  @unique
+  scores       Score[]
+  // scores       Score[] @relation("SubjectScores") // Define the relation name for clarity
+}
+
+model Univisity {
+  univisity_id Int @id @default(autoincrement())
+  //   createdAt    DateTime @default(now())
+  //   updatedAt    DateTime @updatedAt
+
+  //   student_id   Int?
+  //   faculties    String
+  //   fields       String
+  student    Student? @relation(fields: [student_id], references: [student_id])
+  student_id Int?
 }

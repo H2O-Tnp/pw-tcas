@@ -1,0 +1,10 @@
+{
+  "Electronics": {
+    "Mobile": ["Phone"],
+    "Computer": ["Laptop"]
+  },
+  "Clothing": {
+    "Men": ["Shirt"],
+    "Women": ["Jacket"]
+  }
+}

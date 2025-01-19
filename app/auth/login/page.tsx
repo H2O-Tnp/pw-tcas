@@ -6,7 +6,8 @@ export default function LoginPage() {
     <form
       action={async () => {
         'use server';
-        await signIn('google', { redirectTo: '/student/home' });
+        // await signIn('google', { redirectTo: '/student/home' });
+        await signIn('google', { redirectTo: '/auth/check' });
       }}
       className="text-center "
     >

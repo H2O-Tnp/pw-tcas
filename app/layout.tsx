@@ -1,6 +1,7 @@
 import '#/styles/globals.css';
 import { Metadata } from 'next';
-import { ubuntu } from '#/ui/fonts';
+import { noto } from '#/ui/fonts';
+
 
 export const metadata: Metadata = {
   title: {
@@ -29,11 +30,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="[color-scheme:dark]">
       {/* <body className="overflow-y-scroll bg-gray-1100 bg-[url('/grid.svg')] pb-36"></body> */}
-      <body
-        className={`${ubuntu.className} overflow-y-scroll bg-gray-1100 bg-[url('/grid.svg')] pb-36 antialiased`}
-      >
-        {children}
+      {/* <body className={`${ubuntu.className} bg-gray-1100 bg-[url('/grid.svg')] pb-36 antialiased`}> */}
+      <body className={` bg-gray-1100 bg-[url('/grid.svg')] pb-36 antialiased`}>
+        {/* <div className={ubuntu.className}> */}
+        <div className={noto.className}>
+          {children}
+        </div>
       </body>
     </html>
   );
 }
+

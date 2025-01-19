@@ -11,7 +11,7 @@ import { useState } from 'react';
 
 import { ProfileLogo } from './profile-logo';
 
-export function GlobalNav({ session }) {
+export function GlobalNav({ session }) { 
   const [isOpen, setIsOpen] = useState(false);
   const close = () => setIsOpen(false);
   // console.log(session);

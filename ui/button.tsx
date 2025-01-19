@@ -13,7 +13,7 @@ export default function Button({
           kind === 'default',
         'bg-vercel-pink text-red-50 hover:bg-pink-600 hover:text-white':
           kind === 'error',
-      })}
+      })
       {...props}
     />
   );

@@ -8,10 +8,9 @@ export const authConfig = {
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const isOnHomepage =
-        nextUrl.pathname.startsWith('/') && nextUrl.pathname.endsWith('/');
+      const isOnHomepage = nextUrl.pathname.startsWith('/') && nextUrl.pathname.endsWith('/');
       const isOnLogin = nextUrl.pathname.startsWith('/auth/login');
-      // console.log(isOnLogin);
+      // console.log(isOnForm);
 
       if (isOnHomepage) {
         if (isLoggedIn) {
