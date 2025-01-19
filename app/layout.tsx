@@ -5,7 +5,7 @@ import { noto } from '#/ui/fonts';
 export const metadata: Metadata = {
   title: {
     default: 'PW TCAS',
-    template: '%s | Next.js App Router',
+    template: '%s | PW TCAS',
   },
   metadataBase: new URL('https://pw-tcas.vercel.app'),
   description:
