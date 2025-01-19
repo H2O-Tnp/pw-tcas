@@ -30,37 +30,28 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
-  // console.log("this is score api");
-
-  // data from form
-  const body = await req.json();
-  const SubjectId = body.index + 1; // 1-8
-  const newScore = body.score;
-  // console.log(SubjectId);
-  // console.log(newScore);
-
-  // hard code
-  // query currnt user student id
-  const session = await auth();
-  const email = session?.user?.email!;
-  const QueryStudentId = await db.student.findUnique({
-    where: { email },
-    select: { student_id: true }
-  });
-  const StudentId: number = QueryStudentId?.student_id || 99;
-  console.log(StudentId);
-  // hard code
-
-  // check if exist
-  const existingScore = await prisma.score.findFirst({
-    where: {
-      student_id: StudentId,
-      subject_id: SubjectId
-    },
-  });
-  console.log(existingScore);
-
   try {
+    const body = await req.json();
+    const SubjectId = body.index + 1; // 1-8
+    const newScore = body.score;
+
+    // Get the current user's student id
+    const session = await auth();
+    const email = session?.user?.email!;
+    const QueryStudentId = await db.student.findUnique({
+      where: { email },
+      select: { student_id: true },
+    });
+    const StudentId: number = QueryStudentId?.student_id || 99;
+
+    // Check if score exists for the student
+    const existingScore = await prisma.score.findFirst({
+      where: {
+        student_id: StudentId,
+        subject_id: SubjectId,
+      },
+    });
+
     let result;
     if (existingScore) {
       // If the record exists, update it
@@ -72,9 +63,7 @@ export async function POST(req: NextRequest) {
           score: newScore,
         },
       });
-      // console.log('Score updated');
-      console.log('Updated Score:', result);
-      return result;
+      console.log("Updated Score:", result);
     } else {
       // If the record doesn't exist, create it
       result = await prisma.score.create({
@@ -82,15 +71,32 @@ export async function POST(req: NextRequest) {
           student_id: StudentId,
           subject_id: SubjectId,
           score: newScore,
-          percentile: 0
+          percentile: 0,
         },
       });
-      console.log('Score created:', result);
+      console.log("Created Score:", result);
     }
-    return NextResponse.json({ message: 'Success',}, { status: 200 });
 
-  } catch (error) {
-    console.error('Error upserting score:', error);
-    return NextResponse.json({ message: 'Error upserting score', error: error }, { status: 500 });
+    // Return a success response
+    return NextResponse.json(
+      { message: "Score upserted successfully" },
+      { status: 200 }
+    );
+  } catch (error: unknown) {
+    console.error("Error upserting score:", error);
+
+    // Type guard to check if error is an instance of Error
+    if (error instanceof Error) {
+      return NextResponse.json(
+        { message: "Error upserting score", error: error.message },
+        { status: 500 }
+      );
+    } else {
+      // Handle unexpected error type
+      return NextResponse.json(
+        { message: "An unexpected error occurred", error: String(error) },
+        { status: 500 }
+      );
+    }
   }
 }
