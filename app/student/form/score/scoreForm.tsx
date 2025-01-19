@@ -37,6 +37,7 @@ export function StudentForm() {
   };
 
   const handleSubmit = async (index: number) => {
+    setLoading(true); // Start loading
     try {
       const response = await fetch("/api/student/score", {
         method: "POST",
@@ -53,6 +54,7 @@ export function StudentForm() {
     } catch (error) {
       console.error("Error submitting score:", error);
     }
+    setLoading(false); // End loading
   };
 
 
