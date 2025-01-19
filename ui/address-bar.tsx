@@ -2,8 +2,9 @@
 
 import React, { Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
+import clsx from 'clsx';
 
-import  GoBackButton  from './goback-button';
+import GoBackButton from './goback-button';
 
 function Params() {
   const searchParams = useSearchParams()!;
@@ -45,7 +46,6 @@ const filterCallback = [
 
 export function AddressBar() {
   const pathname = usePathname();
-
   return (
     <div className="flex items-center justify-between gap-x-2 p-3.5 lg:px-5 lg:py-3">
       {/* Left side: Address bar */}
@@ -95,9 +95,9 @@ export function AddressBar() {
           ) : null}
         </div>
       </div>
-
-      {/* Right side: Go Back button */}
-      <div className="flex items-center">
+      <div className={clsx('flex items-center',{
+          'hidden': pathname.split('/').slice(2)[0] === "login" || pathname.split('/').slice(2)[0] === "logout",
+      })}>
         <GoBackButton />
       </div>
     </div>

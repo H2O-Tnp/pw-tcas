@@ -2,7 +2,6 @@ import '#/styles/globals.css';
 import { Metadata } from 'next';
 import { noto } from '#/ui/fonts';
 
-
 export const metadata: Metadata = {
   title: {
     default: 'Next.js App Router',
