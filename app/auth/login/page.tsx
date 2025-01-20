@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { signIn, auth } from '#/auth';
 
 
-export function isEmbeddedWebView() {
+function isEmbeddedWebView() {
   if (typeof navigator !== "undefined") {
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
