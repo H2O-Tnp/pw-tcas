@@ -31,7 +31,7 @@
     ".next/types/**/*.ts",
     "ui/SessionWrapper.tsx",
     "ui/global-nav.js",
-    "ui/profile-logo.js"
-, "ui/form copy.js", "ui/form.js", "app/student/form/score/studentForm.fsdftsx", "app/student/form/score/page.tsxdd"  ],
+    "ui/profile-logo.tsx"
+, "ui/form copy.js", "ui/form.js", "app/student/form/score/studentForm.fsdftsx", "app/student/form/score/page.tsxdd", "oldauth.ts", "auth.config.ts.old"  ],
   "exclude": ["node_modules"]
 }

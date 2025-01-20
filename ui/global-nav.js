@@ -9,7 +9,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import clsx from 'clsx';
 import { useState } from 'react';
 
-import { ProfileLogo } from './profile-logo';
+import { ProfileLogo } from './profile-logo.tsx';
 
 export function GlobalNav({ session }) { 
   const [isOpen, setIsOpen] = useState(false);

@@ -8,7 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <div className="flex h-screen items-center justify-center">
-      <div className="max-w-4xl space-y-8 p-10 lg:w-2/5">
+      <div className=" space-y-8 p-10 w-3/5 lg:w-1/2">
         <div className="rounded-lg bg-vc-border-gradient p-px shadow-lg shadow-black/20">
           <div className="rounded-lg bg-black">
             <AddressBar />

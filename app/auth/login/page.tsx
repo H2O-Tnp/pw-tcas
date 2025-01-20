@@ -1,23 +1,31 @@
-import Link from 'next/link';
 import { signIn, auth } from '#/auth';
 
+import { headers } from 'next/headers';
 
-function isEmbeddedWebView() {
-  if (typeof navigator !== "undefined") {
-    const userAgent = navigator.userAgent;
+import { ExternalLink } from '#/ui/external-link';
 
-    // Check for Facebook and Instagram WebViews
-    const isFacebookApp = /FBAN|FBAV|Messenger/i.test(userAgent);
-    const isInstagramApp = /Instagram/i.test(userAgent);
 
-    return isFacebookApp || isInstagramApp;
+
+export default async function LoginPage() {
+  const headersList = await headers();
+  const browserName = headersList.get('x-browser-name') || 'Unknown Browser';
+
+  // Check if the browser is Instagram or Facebook
+  const isSocialBrowser = browserName.includes('Instagram') || browserName.includes('Facebook') || browserName.includes('Line');
+  if (isSocialBrowser) {
+    return (
+      <div className="text-center">
+        <h1 className="text-xl font-bold text-red-500">โปรดเปิดหน้าเว็บใน browser เช่น Chrome หรือ Safari</h1>
+        <p className="mt-4 mb-2 text-gray-600">การใช้งานใน Instagram, Facebook, หรือ Line อาจทำให้ไม่สามารถใช้งานได้</p>
+        <div className='float-left'>
+          {/* <ExternalLink href="https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming"> */}
+          <ExternalLink href="intent://pw-tcas.vercel.app/auth/login/#Intent;scheme=https;package=com.android.chrome;end">
+            เปิดสำหรับ Android
+          </ExternalLink>
+        </div>
+      </div>
+    )
   }
-  return false;
-}
-
-export default function LoginPage() {
-  console.log(isEmbeddedWebView());
-
 
   return (
     <form
@@ -30,20 +38,19 @@ export default function LoginPage() {
       className="text-center "
     >
       <h1 className="text-center text-2xl font-bold text-gray-300 lg:text-3xl">
-        {Number(isEmbeddedWebView())}
-      </h1>
-      <h1 className="text-center text-2xl font-bold text-gray-300 lg:text-3xl">
         เข้าสู่ระบบ
       </h1>
       <h1 className="mt-3 text-center text-2xl font-bold text-gray-300 lg:text-3xl">
         เพื่อบันทึกข้อมูล TCAS
       </h1>
-      <div className="mt-2 text-gray-400">
+      <div className=" mt-2 text-xs text-gray-400 lg:text-base">
         เฉพาะ Gmail โรงเรียนประจวบวิทยาลัยเท่านั้น
       </div>
+
       <div className="mt-3 text-white">
         <button
-          className="mt-4 inline-flex h-14 w-72 items-center justify-center rounded-lg bg-gray-700 text-lg font-medium text-white transition-colors hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50"
+          className="mt-4 inline-flex h-12 w-56 items-center justify-center rounded-lg bg-gray-700 text-base font-medium text-white transition-colors hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 active:bg-blue-600 aria-disabled:cursor-not-allowed aria-disabled:opacity-50
+                                      lg:h-14 lg:w-72 lg:text-lg"
           type="submit"
           name="action"
         >
@@ -75,6 +82,9 @@ export default function LoginPage() {
           </svg>
           <span>Sign in with Google</span>
         </button>
+      </div>
+      <div className="text-xs mt-6 text-gray-600 lg:text-sm">
+        คุณกำลังเปิดด้วย {browserName}
       </div>
     </form>
   );
