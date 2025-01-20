@@ -4,7 +4,7 @@ import { signIn, auth } from '#/auth';
 
 function isEmbeddedWebView() {
   if (typeof navigator !== "undefined") {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const userAgent = navigator.userAgent;
 
     // Check for Facebook and Instagram WebViews
     const isFacebookApp = /FBAN|FBAV|Messenger/i.test(userAgent);
