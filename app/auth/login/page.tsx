@@ -30,6 +30,9 @@ export default function LoginPage() {
       className="text-center "
     >
       <h1 className="text-center text-2xl font-bold text-gray-300 lg:text-3xl">
+        {Number(isEmbeddedWebView())}
+      </h1>
+      <h1 className="text-center text-2xl font-bold text-gray-300 lg:text-3xl">
         เข้าสู่ระบบ
       </h1>
       <h1 className="mt-3 text-center text-2xl font-bold text-gray-300 lg:text-3xl">
