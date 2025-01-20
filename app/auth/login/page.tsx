@@ -1,7 +1,24 @@
 import Link from 'next/link';
 import { signIn, auth } from '#/auth';
 
+
+export function isEmbeddedWebView() {
+  if (typeof navigator !== "undefined") {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    // Check for Facebook and Instagram WebViews
+    const isFacebookApp = /FBAN|FBAV|Messenger/i.test(userAgent);
+    const isInstagramApp = /Instagram/i.test(userAgent);
+
+    return isFacebookApp || isInstagramApp;
+  }
+  return false;
+}
+
 export default function LoginPage() {
+  console.log(isEmbeddedWebView());
+
+
   return (
     <form
       action={async () => {
