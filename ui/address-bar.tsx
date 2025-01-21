@@ -45,7 +45,7 @@ const filterCallback = [
 ];
 
 export function AddressBar() {
-  const pathname = usePathname();
+  const pathname = usePathname().split('/').slice(2)[0];
   return (
     <div className="flex items-center justify-between gap-x-2 p-3.5 lg:px-5 lg:py-3">
       {/* Left side: Address bar */}
@@ -96,7 +96,7 @@ export function AddressBar() {
         </div>
       </div>
       <div className={clsx('flex items-center',{
-          'hidden': pathname.split('/').slice(2)[0] === "login" || pathname.split('/').slice(2)[0] === "logout",
+          'hidden': pathname === "login" || pathname === "logout" || pathname === "home",
       })}>
         <GoBackButton />
       </div>
