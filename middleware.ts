@@ -51,15 +51,15 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(homeUrl);
   }
 
-  // browser check
-  const { browser } = userAgent(request);
-  const browserName = browser.name || 'Unknown Browser';
+  // // browser check
+  // const { browser } = userAgent(request);
+  // const browserName = browser.name || 'Unknown Browser';
 
-  // Add browserName to a custom header
-  const response = NextResponse.next();
-  response.headers.set('x-browser-name', browserName);
+  // // Add browserName to a custom header
+  // const response = NextResponse.next();
+  // response.headers.set('x-browser-name', browserName);
 
-  return response;
+  // return response;
 }
 
 // Apply the middleware only to specific routes
