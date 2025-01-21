@@ -46,7 +46,7 @@ export async function middleware(request: NextRequest) {
 
 
   // // Redirect authenticated users from the login page to the home page
-  if (isAuthenticated && pathname === '/') {
+  if (isAuthenticated && (pathname === '/' || pathname === '/auth/login')) {
     const homeUrl = new URL('/student/home', request.url);
     return NextResponse.redirect(homeUrl);
   }
