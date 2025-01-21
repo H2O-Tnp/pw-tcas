@@ -25,18 +25,25 @@
 // }
 
 import { NextResponse, NextRequest } from 'next/server';
-import { getToken } from 'next-auth/jwt';
+// import { getToken } from 'next-auth/jwt';
 
-import { userAgent } from 'next/server';
+import { auth } from '#/auth';
 
 export async function middleware(request: NextRequest) {
-  const token = await getToken({ req: request, secret: process.env.AUTH_SECRET });
+  // const token = await getToken({ req: request, secret: process.env.AUTH_SECRET });
+  const session = await auth();
   // console.log(token);
   const { pathname } = request.nextUrl;
 
   // Check if the user is authenticated
-  const isAuthenticated = !!token;
-  console.log(isAuthenticated);
+  // const isAuthenticated = !!token;
+  const isAuthenticated = !!session;
+  // console.log(
+  //   '%c dd',
+  //   `background: #ddd; color: #000; padding: 4px; border-radius: 2px`
+  // );
+  console.log(session);
+  console.log("Auth : ", isAuthenticated);
 
   // Redirect unauthenticated users to login page if they're accessing a protected route
   if (!isAuthenticated && pathname !== '/auth/login') {
