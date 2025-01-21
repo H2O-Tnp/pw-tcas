@@ -1,10 +1,7 @@
 import { signIn, auth } from '#/auth';
 
 import { headers } from 'next/headers';
-
 import { ExternalLink } from '#/ui/external-link';
-
-
 
 export default async function LoginPage() {
   const headersList = await headers();
