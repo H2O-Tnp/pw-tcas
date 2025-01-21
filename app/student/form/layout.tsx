@@ -14,7 +14,7 @@ export default async function RootLayout({
 
   if (existingUserByEmail) {
     return (
-      <div className="">
+      <div>
         {children}
       </div>
     )
