@@ -1,7 +1,7 @@
 import { ExternalLink } from '#/ui/external-link';
 import Link from 'next/link';
 
-import { SearchBar } from '#/ui/searchBar';
+// import { SearchBar } from '#/ui/searchBar';
 
 const items = [
   {
@@ -25,7 +25,7 @@ export default function Page() {
   return (
     <div className="space-y-6">
       <h1 className="text-xl font-medium text-gray-300">Patterns</h1>
-      <SearchBar/>
+      {/* <SearchBar/> */}
 
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
         {items.map((item) => {
