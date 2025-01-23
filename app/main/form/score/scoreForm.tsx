@@ -7,6 +7,7 @@ export function StudentForm() {
   const [scores, setScores] = useState<number[]>(Array(8).fill(0));
   const [lastScores, setlastScores] = useState<number[]>(Array(8).fill(0));
   const [loading, setLoading] = useState<boolean>(true); // Track loading state
+  console.log("reload")
 
   const getScore = async () => {
     setLoading(true); // Start loading
@@ -20,6 +21,25 @@ export function StudentForm() {
       });
 
       setScores(transformedData);
+      setlastScores(transformedData);
+    } catch (error) {
+      console.error("Error fetching scores:", error);
+    }
+    setLoading(false); // End loading
+  };
+
+  const updateScore = async () => {
+    setLoading(true); // Start loading
+    try {
+      const response = await fetch("/api/student/score");
+      const data = await response.json();
+      const transformedData = Array(8).fill(0);
+
+      data.result.forEach((item: any) => {
+        transformedData[item.subject_id - 1] = item.score;
+      });
+
+      // setScores(transformedData);
       setlastScores(transformedData);
     } catch (error) {
       console.error("Error fetching scores:", error);
@@ -47,12 +67,12 @@ export function StudentForm() {
 
       if (response.ok) {
         console.log(`Score for index ${index} submitted successfully`);
-        getScore();
+        updateScore();
       } else {
-        console.error("Error submitting score:", response.statusText);
+        alert("Error submitting score: " + response.statusText);
       }
     } catch (error) {
-      console.error("Error submitting score:", error);
+      alert("Error submitting score: " + error);
     }
     setLoading(false); // End loading
   };
@@ -68,9 +88,11 @@ export function StudentForm() {
       <h1 className="text-2xl font-bold">กรอกคะแนน</h1>
 
       {/* Loading Screen */}
-      {loading ? (
-        <div className="text-lg font-semibold text-gray-500 animate-pulse">กำลังโหลด...</div>
-      ) : (
+      {/* {loading ? ( */}
+        {/* <div className="text-lg font-semibold text-gray-500 animate-pulse">กำลังโหลด...</div> */}
+      {/* ) : ( */}
+
+      {
         Object.keys(scores).map((subject, index) => (
           <div className="flex flex-col space-y-3 w-[62%] max-w-lg" key={index}>
             <h1 className="text-lg font-medium">{subjectName[index]}:</h1>
@@ -90,16 +112,19 @@ export function StudentForm() {
                   {
                     'bg-pink-400': lastScores[index] !== scores[index],
                     'bg-gray-700 hover:bg-gray-500': lastScores[index] === 0,
-                    'bg-vercel-pink hover:bg-pink-600': lastScores[index] !== 0,
+                    'bg-vercel-pink hover:bg-pink-600': lastScores[index] === scores[index] && lastScores[index] !== 0,
                   }
                 )}
                 onClick={() => handleSubmit(index)}
+                disabled={loading}
               >
                 {lastScores[index] === 0 ? "Save" : "Edit"}
               </button>
             </div>
           </div>
-        )))}
+        ))
+        // )
+          }
     </div>
   );
 }
