@@ -11,7 +11,7 @@ import { useState } from 'react';
 
 import { ProfileLogo } from './profile-logo.tsx';
 
-export function GlobalNav({ session }) { 
+export function GlobalNav({ session, isTeacher }) {
   const [isOpen, setIsOpen] = useState(false);
   const close = () => setIsOpen(false);
   // console.log(session);
@@ -69,7 +69,20 @@ export function GlobalNav({ session }) {
                 </div>
               );
             })} */}
-          <div className="">
+          {isTeacher ? (
+            <div>
+              <Link
+                href={'/main/teacher'}
+                key={'Logout'}
+                className="group block space-y-1.5 rounded-lg bg-gray-900 px-5 py-3 hover:bg-gray-800"
+              >
+                <div className="font-medium text-gray-200 group-hover:text-gray-50">
+                  {'ดูคะแนนนักเรียน'}
+                </div>
+              </Link>
+            </div>
+          ) : null}
+          <div>
             <Link
               href={'/auth/logout'}
               key={'Logout'}
@@ -103,7 +116,7 @@ function GlobalNavItem({
   return (
     <Link
       onClick={close}
-      href={`/student/${item.slug}`}
+      href={`/main/${item.slug}`}
       className={clsx(
         'block rounded-md px-3 py-2 text-sm font-medium hover:text-gray-300',
         {

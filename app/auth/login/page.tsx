@@ -6,7 +6,6 @@ import { ExternalLink } from '#/ui/external-link';
 export default async function LoginPage() {
   const headersList = await headers();
   const browserName = headersList.get('x-browser-name') || 'Unknown Browser';
-
   // Check if the browser is Instagram or Facebook
   const isSocialBrowser = browserName.includes('Instagram') || browserName.includes('Facebook') || browserName.includes('Line');
   if (isSocialBrowser) {
@@ -28,7 +27,7 @@ export default async function LoginPage() {
     <form
       action={async () => {
         'use server';
-        // await signIn('google', { redirectTo: '/student/home' });
+        // await signIn('google', { redirectTo: '/main/home' });
         console.log("login page");
         await signIn('google', { redirectTo: '/auth/check' });
       }}

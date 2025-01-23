@@ -17,7 +17,7 @@ export default async function Page() {
                 {section.items.map((item) => {
                   return (
                     <Link
-                      href={`/student/${item.slug}`}
+                      href={`/main/${item.slug}`}
                       key={item.name}
                       className="group block space-y-1.5 rounded-lg bg-gray-900 px-5 py-3 hover:bg-gray-800"
                     >

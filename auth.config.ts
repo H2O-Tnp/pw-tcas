@@ -15,14 +15,14 @@
 //       if (isOnHomepage) {
 //         if (isLoggedIn) {
 //           // console.log('Go home');
-//           return Response.redirect(new URL('/student/home', nextUrl));
+//           return Response.redirect(new URL('/main/home', nextUrl));
 //         }
 //         // console.log('Redirect to login page');
 //         return false; // Redirect unauthenticated users to login page
 //       } else if (isLoggedIn) {
 //         if (isOnLogin) {
 //           // console.log('why');
-//           return Response.redirect(new URL('/student/home', nextUrl));
+//           return Response.redirect(new URL('/main/home', nextUrl));
 //         }
 //         // console.log('normal');
 //         return true;
@@ -49,8 +49,8 @@ export const authConfig = {
     //   const isOnHomepage = nextUrl.pathname === '/';
 
     //   // Handle redirection
-    //   if (isOnHomepage && isLoggedIn) return Response.redirect(new URL('/student/home', nextUrl));
-    //   if (isOnLogin && isLoggedIn) return Response.redirect(new URL('/student/home', nextUrl));
+    //   if (isOnHomepage && isLoggedIn) return Response.redirect(new URL('/main/home', nextUrl));
+    //   if (isOnLogin && isLoggedIn) return Response.redirect(new URL('/main/home', nextUrl));
 
     //   return isLoggedIn || isOnLogin; // Allow login or require auth
     // },

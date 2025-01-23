@@ -47,9 +47,8 @@ const filterCallback = [
 export function AddressBar() {
   const pathname = usePathname().split('/').slice(2)[0];
   return (
-    <div className="flex items-center justify-between gap-x-2 p-3.5 lg:px-5 lg:py-3">
-      {/* Left side: Address bar */}
-      <div className="flex items-center gap-x-2">
+    <div className="flex justify-between items-center  h-14 gap-x-2 p-3.5 lg:px-5 lg:py-3">
+      <div className="flex flex-wrap items-center gap-2">
         <div className="text-gray-600">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -65,10 +64,10 @@ export function AddressBar() {
           </svg>
         </div>
         <div className="flex gap-x-1 text-sm font-medium">
-          <div>
-            {/* <span className="px-2 text-gray-400">pw-tcas.com</span> */}
-            {/* <span className="px-2 text-gray-400"></span> */}
-          </div>
+          {/* <div>
+            <span className="px-2 text-gray-400">pw-tcas.com</span>
+            <span className="px-2 text-gray-400"></span>
+          </div> */}
           {pathname ? (
             <>
               <span className="text-gray-600">/</span>
@@ -95,8 +94,9 @@ export function AddressBar() {
           ) : null}
         </div>
       </div>
-      <div className={clsx('flex items-center',{
-          'hidden': pathname === "login" || pathname === "logout" || pathname === "home",
+
+      <div className={clsx('flex items-center self-start', {
+        'hidden': pathname === "login" || pathname === "logout" || pathname === "home",
       })}>
         <GoBackButton />
       </div>

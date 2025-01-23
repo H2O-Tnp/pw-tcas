@@ -23,35 +23,44 @@ export default async function LoginPage() {
     console.log("create new user");
     const user_id = email?.slice(0, 5);
     const isNumeric = (string: any) => /^[+-]?\d+(\.\d+)?$/.test(string)
+    const isStudent = isNumeric(user_id)
     // console.log(isNumeric(user_id));
-    if (isNumeric(user_id)) {
+    if (isStudent) {
       console.log("register student");
       const submitData = async () => {
-        // let response = await fetch('http://localhost:3000/api/register', {
-        let response = await fetch('https://pw-tcas.vercel.app/api/register', {
+        const webUrl = String(process.env.NEXT_PUBLIC_API_URL);
+        let response = await fetch(webUrl + '/api/register', {
           method: 'POST',
           body: JSON.stringify({
+            type: "student",
             name: firstname,
             surname: lastName,
             email: email
             // class: class,
             // academic_year: academic_year,
           }),
-          // headers: {
-          //   'Content-type': 'application/json'
-          // }
         })
-
-        // response = await response.json()
-
-        // alert(JSON.stringify(response))
       }
       submitData();
     }
     else {
-      console.log("teacher");
-
+      console.log("register teacher");
+      const submitData = async () => {
+        const webUrl = String(process.env.NEXT_PUBLIC_API_URL);
+        let response = await fetch(webUrl + '/api/register', {
+          method: 'POST',
+          body: JSON.stringify({
+            type: "teacher",
+            name: firstname,
+            surname: lastName,
+            email: email
+            // class: class,
+            // academic_year: academic_year,
+          }),
+        })
+      }
+      submitData();
     }
   }
-  redirect('/student/home');
+  redirect('/main/home');
 }

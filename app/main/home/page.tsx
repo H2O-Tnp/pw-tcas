@@ -11,7 +11,7 @@ export default async function Page() {
           <div className="">
             
             <Link
-              href={`/student/form/university`} // to be continue
+              href={`/main/form/university`} // to be continue
               // key={item.name}
               className="group block space-y-1.5 rounded-lg bg-gray-900 px-5 py-3 hover:bg-gray-800 text-center"
             >
@@ -30,7 +30,7 @@ export default async function Page() {
         <h1 className="text-xl font-semibold text-gray-300">บันทึกข้อมูล</h1>
         <div className="grid grid-cols-2 gap-5 lg:grid-cols-2">
           <Link
-            href={`/student/form/score`}
+            href={`/main/form/score`}
             // key={item.name}
             className="group block space-y-1.5 rounded-lg bg-gray-900 px-5 py-3 hover:bg-gray-800"
           >
@@ -43,7 +43,7 @@ export default async function Page() {
             </div>
           </Link>
           <Link
-            href={`/student/form/university`}
+            href={`/main/form/university`}
             // key={item.name}
             className="group block space-y-1.5 rounded-lg bg-gray-900 px-5 py-3 hover:bg-gray-800"
           >

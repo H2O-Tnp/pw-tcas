@@ -20,7 +20,7 @@ export async function middleware(request: NextRequest) {
 
   // // Redirect authenticated users from the login page to the home page
   if (isAuthenticated && (pathname === '/' || pathname === '/auth/login')) {
-    const homeUrl = new URL('/student/home', request.url);
+    const homeUrl = new URL('/main/home', request.url);
     return NextResponse.redirect(homeUrl);
   }
 
@@ -37,5 +37,5 @@ export async function middleware(request: NextRequest) {
 
 // Apply the middleware only to specific routes
 export const config = {
-  matcher: ['/', '/auth/login','/auth/logout', '/student/:path*'],
+  matcher: ['/', '/auth/login','/auth/logout', '/main/:path*'],
 };

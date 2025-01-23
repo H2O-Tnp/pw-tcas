@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="[color-scheme:dark]">
       {/* <body className={` bg-gray-1100 bg-[url('/grid.svg')] antialiased overflow-hidden`}> */}
-      <body className={` bg-gray-1100 bg-[url('/grid.svg')] antialiased overflow-y-auto`}>
+      <body className={` bg-gray-1000 bg-[url('/grid.svg')] antialiased overflow-y-auto`}>
         {/* <div className={ubuntu.className}> */}
         <div className={noto.className}>
           {children}

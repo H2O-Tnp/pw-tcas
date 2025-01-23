@@ -24,6 +24,14 @@ model Student {
   univisity     Univisity[]
 }
 
+model Teacher {
+  teacher_id    Int         @id @default(autoincrement())
+  name          String
+  surname       String
+  email         String      @unique
+  class         String?
+}
+
 model Score {
   score_id  Int      @id @default(autoincrement())
   // createdAt DateTime @default(now())
