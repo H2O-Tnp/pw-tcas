@@ -23,7 +23,8 @@ export default async function LoginPage() {
     console.log("create new user");
     const user_id = email?.slice(0, 5);
     const isNumeric = (string: any) => /^[+-]?\d+(\.\d+)?$/.test(string)
-    const isStudent = isNumeric(user_id)
+    // const isStudent = isNumeric(user_id)
+    const isStudent = true
     // console.log(isNumeric(user_id));
     if (isStudent) {
       console.log("register student");

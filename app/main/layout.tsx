@@ -29,7 +29,6 @@ export default async function RootLayout({
           <div className="rounded-lg bg-vc-border-gradient p-px shadow-lg shadow-black/20">
             <div className="rounded-lg bg-black p-3.5 lg:p-6">{children}</div>
           </div>
-          {/* <Byline /> */}
         </div>
       </div>
     </div>

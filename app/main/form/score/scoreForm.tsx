@@ -7,7 +7,7 @@ export function StudentForm() {
   const [scores, setScores] = useState<number[]>(Array(8).fill(0));
   const [lastScores, setlastScores] = useState<number[]>(Array(8).fill(0));
   const [loading, setLoading] = useState<boolean>(true); // Track loading state
-  console.log("reload")
+  const [loadingIndex, setLoadingIndex] = useState<number | null>(null); // Track which button is loading
 
   const getScore = async () => {
     setLoading(true); // Start loading
@@ -29,7 +29,7 @@ export function StudentForm() {
   };
 
   const updateScore = async () => {
-    setLoading(true); // Start loading
+    // setLoading(true); // Start loading
     try {
       const response = await fetch("/api/student/score");
       const data = await response.json();
@@ -44,7 +44,7 @@ export function StudentForm() {
     } catch (error) {
       console.error("Error fetching scores:", error);
     }
-    setLoading(false); // End loading
+    // setLoading(false); // End loading
   };
 
 
@@ -57,7 +57,7 @@ export function StudentForm() {
   };
 
   const handleSubmit = async (index: number) => {
-    setLoading(true); // Start loading
+    setLoadingIndex(index); // Set only the clicked button to loading state
     try {
       const response = await fetch("/api/student/score", {
         method: "POST",
@@ -74,7 +74,7 @@ export function StudentForm() {
     } catch (error) {
       alert("Error submitting score: " + error);
     }
-    setLoading(false); // End loading
+    setLoadingIndex(null); // End loading
   };
 
 
@@ -86,13 +86,10 @@ export function StudentForm() {
   return (
     <div className="w-full flex flex-col items-center justify-center space-y-6">
       <h1 className="text-2xl font-bold">กรอกคะแนน</h1>
-
       {/* Loading Screen */}
-      {/* {loading ? ( */}
-        {/* <div className="text-lg font-semibold text-gray-500 animate-pulse">กำลังโหลด...</div> */}
-      {/* ) : ( */}
-
-      {
+      {loading ? (
+        <div className="text-lg font-semibold text-gray-500 animate-pulse">กำลังโหลด...</div>
+      ) : (
         Object.keys(scores).map((subject, index) => (
           <div className="flex flex-col space-y-3 w-[62%] max-w-lg" key={index}>
             <h1 className="text-lg font-medium">{subjectName[index]}:</h1>
@@ -108,23 +105,30 @@ export function StudentForm() {
               />
               <button
                 className={clsx(
-                  'group block space-y-1.5 rounded-lg  w-20 h-12 font-medium text-white transition-colors duration-300',
+                  'group relative flex items-center justify-center rounded-lg w-20 h-12 font-medium text-white transition-all duration-300 active:scale-90',
                   {
-                    'bg-pink-400': lastScores[index] !== scores[index],
-                    'bg-gray-700 hover:bg-gray-500': lastScores[index] === 0,
-                    'bg-vercel-pink hover:bg-pink-600': lastScores[index] === scores[index] && lastScores[index] !== 0,
+                    "bg-pink-400": lastScores[index] !== scores[index],
+                    "bg-gray-700 hover:bg-gray-500": lastScores[index] === 0,
+                    "bg-vercel-pink hover:bg-pink-600": lastScores[index] === scores[index] && lastScores[index] !== 0,
+                    "cursor-not-allowed opacity-50": loadingIndex === index, // Disable only the clicked button
                   }
                 )}
                 onClick={() => handleSubmit(index)}
-                disabled={loading}
+                disabled={loadingIndex === index} // Only disable the clicked button
               >
-                {lastScores[index] === 0 ? "Save" : "Edit"}
+                {loadingIndex === index ? (
+                  <span className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  </span>
+                ) : (
+                  lastScores[index] === 0 ? "Save" : "Edit"
+                )}
               </button>
             </div>
           </div>
         ))
-        // )
-          }
+      )
+      }
     </div>
   );
 }
