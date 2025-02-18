@@ -39,10 +39,23 @@ export default async function Page() {
             </div>
 
             <div className="line-clamp-3 text-sm text-gray-400 group-hover:text-gray-300">
-              {"TGAT TPAT A-Level"}
+              {"TGAT TPAT"}
             </div>
           </Link>
           <Link
+            href={`/main/form/university`}
+            // key={item.name}
+            className="group block space-y-1.5 rounded-lg bg-gray-900 px-5 py-3 hover:bg-gray-800"
+          >
+            <div className="font-medium text-gray-200 group-hover:text-gray-50">
+              {"คะแนนสอบ"}
+            </div>
+
+            <div className="line-clamp-3 text-sm text-gray-400 group-hover:text-gray-300">
+              {"A-Level"}
+            </div>
+          </Link>
+          {/* <Link
             href={`/main/form/university`}
             // key={item.name}
             className="group block space-y-1.5 rounded-lg bg-gray-900 px-5 py-3 hover:bg-gray-800"
@@ -54,7 +67,7 @@ export default async function Page() {
             <div className="line-clamp-3 text-sm text-gray-400 group-hover:text-gray-300">
               {"รอบ 1-4"}
             </div>
-          </Link>
+          </Link> */}
         </div>
       </div>
       </div>
