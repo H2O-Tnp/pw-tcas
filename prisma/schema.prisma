@@ -21,6 +21,7 @@ model Student {
   class         String?
   academic_year Int?
   scores        Score[]
+  alevel        Alevel[]
   univisity     Univisity[]
 }
 
@@ -46,10 +47,31 @@ model Score {
   // @@unique([student_id, subject_id]) // Composite unique constraint
 }
 
+model Alevel {
+  score_id  Int      @id @default(autoincrement())
+  // createdAt DateTime @default(now())
+  // updatedAt DateTime @updatedAt
+
+  student_id Int
+  subject_id Int
+  score      Float
+  percentile Float?
+  student    Student @relation(fields: [student_id], references: [student_id], onDelete: Cascade)
+  subject    Alevel_Subject @relation(fields: [subject_id], references: [subject_id], onDelete: Cascade)
+  // @@unique([student_id, subject_id]) // Composite unique constraint
+}
+
 model Subject {
   subject_id   Int     @id @default(autoincrement())
   subject_name String  @unique
   scores       Score[]
+  // scores       Score[] @relation("SubjectScores") // Define the relation name for clarity
+}
+
+model Alevel_Subject {
+  subject_id   Int     @id @default(autoincrement())
+  subject_name String  @unique
+  alevel       Alevel[]
   // scores       Score[] @relation("SubjectScores") // Define the relation name for clarity
 }
 
