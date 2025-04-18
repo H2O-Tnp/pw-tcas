@@ -22,8 +22,8 @@ export async function GET() {
       student_id: StudentId
     },
     select: {
-      score: true,
-      subject_id: true,
+      alevel_score: true,
+      alevel_subject_id: true,
     }
   })
   return NextResponse.json({result:scoresFromDB});
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     const existingScore = await prisma.alevel.findFirst({
       where: {
         student_id: StudentId,
-        subject_id: SubjectId,
+        alevel_subject_id: SubjectId
       },
     });
 
@@ -57,10 +57,10 @@ export async function POST(req: NextRequest) {
       // If the record exists, update it
       result = await prisma.alevel.update({
         where: {
-          score_id: existingScore.score_id,
+          alevel_score_id: existingScore.alevel_score_id,
         },
         data: {
-          score: newScore,
+          alevel_score: newScore,
         },
       });
       console.log("Updated Score:", result);
@@ -69,9 +69,9 @@ export async function POST(req: NextRequest) {
       result = await prisma.alevel.create({
         data: {
           student_id: StudentId,
-          subject_id: SubjectId,
-          score: newScore,
-          percentile: 0,
+          alevel_subject_id: SubjectId,
+          alevel_score: newScore,
+          alevel_percentile: 0,
         },
       });
       console.log("Created Score:", result);

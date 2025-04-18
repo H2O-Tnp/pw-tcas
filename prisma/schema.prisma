@@ -48,16 +48,16 @@ model Score {
 }
 
 model Alevel {
-  score_id  Int      @id @default(autoincrement())
+  alevel_score_id  Int      @id @default(autoincrement())
   // createdAt DateTime @default(now())
   // updatedAt DateTime @updatedAt
 
   student_id Int
-  subject_id Int
-  score      Float
-  percentile Float?
+  alevel_subject_id Int
+  alevel_score      Float
+  alevel_percentile Float?
   student    Student @relation(fields: [student_id], references: [student_id], onDelete: Cascade)
-  subject    Alevel_Subject @relation(fields: [subject_id], references: [subject_id], onDelete: Cascade)
+  subject    Alevel_Subject @relation(fields: [alevel_subject_id], references: [subject_id], onDelete: Cascade)
   // @@unique([student_id, subject_id]) // Composite unique constraint
 }
 

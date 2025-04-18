@@ -17,7 +17,7 @@ export function StudentForm() {
       const transformedData = Array(16).fill(0);
 
       data.result.forEach((item: any) => {
-        transformedData[item.subject_id - 1] = item.score;
+        transformedData[item.alevel_subject_id - 1] = item.alevel_score;
       });
 
       setScores(transformedData);
@@ -36,7 +36,7 @@ export function StudentForm() {
       const transformedData = Array(16).fill(0);
 
       data.result.forEach((item: any) => {
-        transformedData[item.subject_id - 1] = item.score;
+        transformedData[item.alevel_subject_id - 1] = item.alevel_score;
       });
 
       // setScores(transformedData);
